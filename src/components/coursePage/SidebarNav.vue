@@ -1,5 +1,5 @@
 <template>
-  <div class="align-self-start">
+  <div class="align-self-start mt-5">
     <div class="vertical-menu">
       <div class="row">
         <div class="col-md-4"><div class="cube"><router-link to="/game/1/category" exact><i class="fa fa-pagelines" aria-hidden="true"></i>Fiszki</router-link></div></div>

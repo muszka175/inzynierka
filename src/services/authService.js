@@ -1,13 +1,13 @@
-import Vue from 'vue';
+import Vue from "vue";
 
 export default {
     login(credentials, success, error) {
         Vue.http.post("login", credentials)
             .then((response) => {
-                if (response.status === 200 && 'token' in response.body.success) {
-                    localStorage.setItem('token', response.body.success.token);
-                    localStorage.setItem('role', response.body.success.role);
-                    Vue.http.headers.common['Authorization'] = response.body.success.token;
+                if (response.status === 200 && "token" in response.body.success) {
+                    localStorage.setItem("token", response.body.success.token);
+                    localStorage.setItem("role", response.body.success.role);
+                    Vue.http.headers.common["Authorization"] = response.body.success.token;
                     success(response.data)
                 }
             })
@@ -16,8 +16,7 @@ export default {
             })
     },
     register(credentials, success, error) {
-        Vue.http.post("register", credentials)
-            .then((response) => {
+        Vue.http.post("register", credentials).then((response) => {
                 if (response.status === 200 && 'token' in response.body.success) {
                     localStorage.setItem('token', response.body.success.token);
                     localStorage.setItem('role', response.body.success.role);

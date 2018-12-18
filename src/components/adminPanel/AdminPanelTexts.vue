@@ -1,7 +1,7 @@
 <template>
   <main class="texts-section">
     <main-menu class="navbar-toggleable-md"></main-menu>
-      <div class="container">
+      <!-- <div class="container">
         <div class="row">
             <div class="texts-container col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
                 <div class="texts"> 
@@ -50,7 +50,79 @@
         </div>
         </div>
         </div>
-    </div>
+    </div> -->
+      <v-layout class="ma-5 login">
+    <v-flex xs12 sm6 offset-sm3 class="card-flex">
+      <v-card class="mt-5 card">
+        <v-card-title primary-title>
+          <h3 class="headline mb-0 mt-2 text-uppercase">Teksty na stronie</h3>
+          <div class="message">{{this.message}}</div>
+        </v-card-title>
+        <v-card-text>
+          <v-form class="px3" ref="form" method="post" action="#" v-if="!submitted">
+            <v-text-field
+              :rules="inputRules"
+              class="formField"
+              v-model="texts.offerDescription"
+              prepend-icon="edit"
+              label="Opis oferty"
+              hint="Opis oferty"
+            >
+            </v-text-field>
+                <v-text-field
+              :rules="inputRules"
+              class="formField"
+              v-model="texts.offerOption1"
+              prepend-icon="edit"
+              label="Opcja 1"
+              hint="Opcja 1"
+            >
+            </v-text-field>
+                <v-text-field
+              :rules="inputRules"
+              class="formField"
+              v-model="texts.offerOption2"
+              prepend-icon="edit"
+              label="Opcja 2"
+              hint="Opcja 2"
+            >
+            </v-text-field>
+                <v-text-field
+              :rules="inputRules"
+              class="formField"
+              v-model="texts.offerOption3"
+              prepend-icon="edit"
+              label="Opcja 3"
+              hint="Opcja 3"
+            >
+            </v-text-field>
+                <v-text-field
+              :rules="inputRules"
+              class="formField"
+              v-model="texts.contactDescription"
+              prepend-icon="edit"
+              label="Opis kontaktu"
+              hint="Opis kontaktu"
+            >
+            </v-text-field>
+            <v-textarea
+              label="O kursie"
+              v-model="texts.aboutCourse"
+              prepend-icon="edit"
+              :rules="inputRules"
+               hint="Opis kontaktu"
+              >
+            </v-textarea>
+          
+          </v-form>
+        </v-card-text>
+
+        <v-card-actions class="mb-4">
+           <v-btn flat class="primary mx-0 mt-3" @click="add" type="button" name="sent">Dodaj</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>
+  </v-layout>
   </main>
 </template>
 
@@ -68,50 +140,59 @@ export default {
       submitted: false,
       errors: {},
       somethingChanged: false,
-      message: ""
-    };
-  },
+      message: "",
+      inputRules: [
+      value => !!value || 'Required.',
+      v => v.length >= 3 || 'minimum length is 3 characters'
+    ],
+  };
+},
   methods: {
     add() {
-      this.somethingChanged = false;
-      this.newData["id"] = 1;
-      this.newData["offerDescription"] = this.texts.offerDescription;
-      this.newData["offerOption1"] = this.texts.offerOption1;
-      this.newData["offerOption2"] = this.texts.offerOption2;
-      this.newData["offerOption3"] = this.texts.offerOption3;
-      this.newData["contactDescription"] = this.texts.contactDescription;
-      this.newData["aboutCourse"] = this.texts.aboutCourse;
+      if (this.$refs.form.validate()) {
+        this.somethingChanged = false;
+        this.newData["id"] = 1;
+        this.newData["offerDescription"] = this.texts.offerDescription;
+        this.newData["offerOption1"] = this.texts.offerOption1;
+        this.newData["offerOption2"] = this.texts.offerOption2;
+        this.newData["offerOption3"] = this.texts.offerOption3;
+        this.newData["contactDescription"] = this.texts.contactDescription;
+        this.newData["aboutCourse"] = this.texts.aboutCourse;
 
-      if (this.texts.offerDescription !== this.originalData.offerDescription) {
-        this.somethingChanged = true;
-      }
-      if (this.texts.offerOption1 !== this.originalData.offerOption1) {
-        this.somethingChanged = true;
-      }
-      if (this.texts.offerOption2 !== this.originalData.offerOption2) {
-        this.somethingChanged = true;
-      }
-      if (this.texts.offerOption3 !== this.originalData.offerOption3) {
-        this.somethingChanged = true;
-      }
-      if (
-        this.texts.contactDescription !== this.originalData.contactDescription) {
-        this.somethingChanged = true;
-      }
-      if (this.texts.aboutCourse !== this.originalData.aboutCourse) {
-        this.somethingChanged = true;
-      }
+        if (
+          this.texts.offerDescription !== this.originalData.offerDescription
+        ) {
+          this.somethingChanged = true;
+        }
+        if (this.texts.offerOption1 !== this.originalData.offerOption1) {
+          this.somethingChanged = true;
+        }
+        if (this.texts.offerOption2 !== this.originalData.offerOption2) {
+          this.somethingChanged = true;
+        }
+        if (this.texts.offerOption3 !== this.originalData.offerOption3) {
+          this.somethingChanged = true;
+        }
+        if (
+          this.texts.contactDescription !== this.originalData.contactDescription
+        ) {
+          this.somethingChanged = true;
+        }
+        if (this.texts.aboutCourse !== this.originalData.aboutCourse) {
+          this.somethingChanged = true;
+        }
 
-      if (this.somethingChanged) {
-        console.log("Obiekt do wysłania", this.newData);
-        this.$http.post("edit-text", this.newData).then(response => {
-          console.log("post", response);
-          this.message = "Zmieniono poprawnie dane";
-          this.originalData = Object.assign({}, this.texts);
-        });
-      } else {
-        this.message =
-          "Zmiany nie zostały zapisane, ponieważ dane nie zmieniły się";
+        if (this.somethingChanged) {
+          console.log("Obiekt do wysłania", this.newData);
+          this.$http.post("edit-text", this.newData).then(response => {
+            console.log("post", response);
+            this.message = "Zmieniono poprawnie dane";
+            this.originalData = Object.assign({}, this.texts);
+          });
+        } else {
+          this.message =
+            "Zmiany nie zostały zapisane, ponieważ dane nie zmieniły się";
+        }
       }
     },
     submitForm() {
