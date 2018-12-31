@@ -13,9 +13,9 @@
           <div class="row">
             <div class="flashcards-container col-lg-6 col-md-8 col-sm-8">
               <div class="flashcards"> 
-                <span v-if="this.type === 1">{{ words[this.index].kanji }}</span>
-                <span v-if="this.type === 2">{{ words[this.index].kana }}</span>
-                <span v-if="this.type === 3">{{ words[this.index].polish }}</span>
+                <span class="flashcardWord" v-if="this.type === 1">{{ words[this.index].kanji }}</span>
+                <span class="flashcardWord" v-if="this.type === 2">{{ words[this.index].kana }}</span>
+                <span class="flashcardWord" v-if="this.type === 3">{{ words[this.index].polish }}</span>
               </div>
               <div class="helper-container">
                 <div class="answers" v-if="this.type === 1">
@@ -35,7 +35,7 @@
                 <input @click="changeWord" class="true" type="submit" value="Znam"/>
                 <input @click="showResult" class="false" type="submit" value="Nie znam"/>
               </div>
-              <div>Pytanie: <span>{{this.index +1}}/{{this.words.length }}</span></div>
+              <div>Pytanie: <span>{{this.index +1}}/{{this.max_points = this.words.length }}</span></div>
             </div>
           </div>
         </div>
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import authService from "../../services/authService";
 
 export default {
   props: ['words'],
@@ -52,7 +53,10 @@ export default {
     return {
       index: 0,
       result: false,
-      type: 0
+      type: 0,
+      category: 0,
+      game: 0,
+      max_points: 0,
     };
   },
   methods: {
@@ -67,9 +71,25 @@ export default {
       this.result = false;
     }
   },
-  mounted() {
-    console.log("Flashcards mounted");
-    console.log('this', this.words);
+  created() {
+    console.log('params', this.$route.params.gameId, this.$route.params.categoryId, this.index)
+    this.category = this.$route.params.categoryId,
+    this.game = this.$route.params.gameId
+  },
+  beforeDestroy() {
+    const gameProgress = {
+      score: this.index,
+      game: this.game,
+      category: this.category,
+      max_points: this.max_points,
+    };
+    this.$http.post("progress", gameProgress, {
+      headers: {
+        Authorization: `Bearer ${authService.getToken()}`
+      }
+    }).then(response => {
+      console.log('wysłano')
+    })
   }
 };
 </script>

@@ -246,7 +246,7 @@ export default {
         console.log("Obiekt do wysłania", this.newData);
 
         this.$http.post("edit-account", this.newData).then(response => {
-          console.log(response);
+          // console.log(response);
           this.message = "Zmieniono poprawnie dane";
           this.originalData = Object.assign({}, this.personDetails);
           this.changedPassword = this.confirmPassword

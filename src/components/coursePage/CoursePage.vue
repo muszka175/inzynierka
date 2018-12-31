@@ -8,14 +8,14 @@
 
 <script>
 import CoursePageHeader from "./CoursePageHeader.vue";
-import CoursePageMyCourse from "./CoursePageMyCourse.vue";
+import MyCourse from "./MyCourse.vue";
 // import Navbar from './Navbar.vue'
 import authService from "../../services/authService";
 
 export default {
   components: {
     "course-header": CoursePageHeader,
-    "course": CoursePageMyCourse,
+    "course": MyCourse,
     // "Navbar": Navbar,
   },
   data() {

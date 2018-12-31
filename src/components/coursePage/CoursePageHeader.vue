@@ -84,8 +84,8 @@ export default {
         drawer: false,
         links: [
           { icon: 'dashboard', text: 'Zarządzaj', route: '/admin-panel' },
-         { icon: 'folder', text: 'Strona kursu', route: '/course' },
-         { icon: 'person', text: 'Ustawienia', route: '/settings' },
+          { icon: 'folder', text: 'Strona kursu', route: '/course' },
+          { icon: 'person', text: 'Ustawienia', route: '/settings' },
        ],
       }
     },

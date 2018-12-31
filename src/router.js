@@ -5,6 +5,7 @@ import Router from "vue-router";
 import HomePage from "./components/homePage/HomePage.vue";
 import Login from "./components/homePage/LogIn.vue";
 import Register from "./components/homePage/Register.vue";
+import SendEmail from "./components/homePage/SendEmail.vue";
 import CoursePage from "./components/coursePage/CoursePage.vue";
 import GameCategories from "./components/coursePage/GameCategories.vue";
 import Settings from "./components/coursePage/Settings.vue";
@@ -36,23 +37,65 @@ export default new Router({
     //   component: () =>
     //     // import(/* webpackChunkName: "about" */ "./views/About.vue")
     // }
-    { 
-      path: '/',
+    {
+      path: "/",
       component: HomePage
     },
-    { path: '/home', component: HomePage},
-    { path: '/login', component: Login},
-    { path: '/register', component: Register},
-    { path: '/course', component: CoursePage},
-
-    { path: '/game/:gameId/category', component: GameCategories},
-    { path: '/game/:gameId/category/:categoryId', component: Game},
-    { path: '/settings', component: Settings},
-    { path: '/flashcards', component: Flashcards},
-    { path: '/admin-panel', component: AdminPanel},
-    { path: '/texts-option', component: TextsOption},
-    { path: '/users-option', component: UsersOption},
-    { path: '/facebook-option', component: FacebookOption},
-    { path: '/payment-option', component: PaymentOption},
+    {
+      path: "/home",
+      component: HomePage
+    },
+    {
+      path: "/login",
+      component: Login
+    },
+    {
+      path: "/register",
+      component: Register
+    },
+    {
+      path: "/course",
+      component: CoursePage
+    },
+    {
+      path: "/game/:gameId/category",
+      component: GameCategories
+    },
+    {
+      path: "/game/:gameId/category/:categoryId",
+      component: Game
+    },
+    {
+      path: "/settings",
+      component: Settings
+    },
+    {
+      path: "/flashcards",
+      component: Flashcards
+    },
+    {
+      path: "/admin-panel",
+      component: AdminPanel
+    },
+    {
+      path: "/texts-option",
+      component: TextsOption
+    },
+    {
+      path: "/users-option",
+      component: UsersOption
+    },
+    {
+      path: "/facebook-option",
+      component: FacebookOption
+    },
+    {
+      path: "/payment-option",
+      component: PaymentOption
+    },
+    {
+      path: "/sendEmail",
+      component: SendEmail
+    },
   ]
 });

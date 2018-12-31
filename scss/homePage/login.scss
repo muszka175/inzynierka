@@ -17,3 +17,9 @@ $iconhover:#27ae60;
 input[type=text], input[type=password]{
     background: transparent;
 }
+label{
+    margin-bottom: 0;
+}
+form.v-for.px3.form{
+    padding: 20 20 0 20 !important;
+}

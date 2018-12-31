@@ -23,14 +23,13 @@ Vue.use(VeeValidate);
 Vue.use(VueSession);
 
 //Vue.http.options.crossOrigin = true
-Vue.http.options.root = 'http://japankitty.halamix2.pl/api/';
+Vue.http.options.root = 'http://dev.japankitty.halamix2.pl/api/v1/';
 Vue.http.options.emulateJSON = true;
-//Vue.http.headers.common['Content-Type'] = 'application/json';
-
 Vue.http.headers.common["Authorization"] = "Bearer " + authService.getToken();
+//Vue.http.headers.common['Content-Type'] = 'application/json';
 // Vue.http.headers.common['Access-Control-Allow-Origin'] = 'http://localhost:8080'
 //Vue.http.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-Vue.http.options.emulateJSON = true;
+// Vue.http.options.emulateJSON = true;
 //Vue.http.options.emulateHTTP = true;
 
 //
@@ -38,12 +37,12 @@ Vue.http.options.emulateJSON = true;
 Vue.config.productionTip = false;
 
 new Vue({
-  /* http: {
-    root: 'http://localhost/api/',
+   http: {
+    root: 'http://dev.japankitty.halamix2.pl/api/v1/',
     headers: {
-      Authorization: authService.getToken()
+      Authorization: "Bearer " + authService.getToken()
     }
-  },*/
+  },
   router,
   store,
   render: h => h(App)

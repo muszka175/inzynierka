@@ -89,17 +89,20 @@
                   @change="save"
                 ></v-date-picker>
               </v-menu>
+            <div>
+              <v-checkbox v-model="newUser.remember" label="Nie wylogowywuj mnie" color="#009688"></v-checkbox>
+            </div>
               <div v-if="isError">
                 <div class="error--text" v-for="(error,i) in errors" :key="i">
                   <div v-for="(err,j) in error" :key="j">{{ err }}</div>
                 </div>
               </div>
+              <div>
+                <v-btn flat class="primary mx-0 mt-3" @click="register">Register</v-btn>
+              </div>
             </v-form>
           </v-card-text>
-
-          <v-card-actions class="mb-4">
-            <v-btn flat class="primary mx-0 mt-3" @click="register">Register</v-btn>
-          </v-card-actions>
+          
           <div v-if="submitted" class="after-register">
             <h3 class="after-register-header">Dziękujemy za poprawne zarejestrowanie się!</h3>
             <span>Aby przejść do kursu kliknij przycik poniżej.</span>
@@ -132,6 +135,7 @@ export default {
         password: "",
         sex: "",
         birthday: null,
+        remember: false,
       },
       submitted: false,
       menu: false,
@@ -178,14 +182,6 @@ export default {
         authService.register(this.newUser, success, error);
       }
     },
-    showErrors(){
-
-    }
   },
-    computed: {
-    formattedDate() {
-      return this.newUser.birthday ? format(this.newUser.birthday, 'Do MMM YYYY') : ''
-    }
-  }
 };
 </script>

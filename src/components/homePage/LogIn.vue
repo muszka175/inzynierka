@@ -8,7 +8,7 @@
           <h3 class="headline mb-0 mt-2 text-uppercase">Login</h3>
         </v-card-title>
         <v-card-text>
-          <v-form class="px3" ref="form" method="post" action="#" v-if="!submitted">
+          <v-form class="px3 form" ref="form" method="post" action="#" v-if="!submitted">
             <v-text-field
               :rules="emailRules"
               class="formField"
@@ -32,6 +32,12 @@
             >
             </v-text-field>
             <p class="text-danger" v-if="isError===true">Podano zły login lub hasło</p>
+            <div>
+              <v-checkbox v-model="login.remember" label="Nie wylogowywuj mnie" color="#009688"></v-checkbox>
+            </div>
+            <div class="pt-3">
+              <router-link to="/sendEmail" exact><p class="teal--text darken-1">Nie pamiętasz hasła?</p></router-link>
+            </div>
           </v-form>
         </v-card-text>
 
@@ -64,7 +70,8 @@ export default {
     return {
       login: {
         email: "",
-        password: ""
+        password: "",
+        remember: false,
       },
       submitted: false,
       isError: false,

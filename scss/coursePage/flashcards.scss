@@ -30,6 +30,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            .flashcardWord{
+                font-size: 40px;
+            }
         }
         .helper-container{
             text-align: center;
