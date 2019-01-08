@@ -1,40 +1,12 @@
 <template>
-  <!-- <div class="header container-fluid">
-      <div class="row">
-        <nav toggleable="lg" type="light" variant="info">
-          <sidebar></sidebar>
-          <b-navbar-brand href="#"><logo></logo></b-navbar-brand>
-          <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-          <b-collapse is-nav id="nav_collapse">
-
-          <b-navbar-nav class="ml-auto">
-
-          <main-menu></main-menu>
-          </b-navbar-nav>
-        </b-collapse>
-      </b-navbar>
-    </div>
-  </div> -->
 <nav class="mb-5 py-2">
     <v-toolbar flat app>
       <v-toolbar-side-icon class="grey--text" @click="drawer = !drawer"></v-toolbar-side-icon></v-toolbar-side-icon>
       <logo></logo>
       <v-spacer></v-spacer>
 
-      <v-menu offset-y>
-        <v-btn flat slot="activator" color="grey">
-          <v-icon>expand_more</v-icon>
-          <span>Menu</span>
-        </v-btn>
-        <v-list>
-          <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
-            <v-list-tile-title>{{ link.text }}</v-list-tile-title>
-          </v-list-tile>
-        </v-list>
-      </v-menu>
-
       <v-btn flat color="grey" @click="signout">
-        <span>Sign out</span>
+        <span>Wyloguj</span>
         <v-icon right>exit_to_app</v-icon>
       </v-btn>
     </v-toolbar>
@@ -42,11 +14,13 @@
     <v-navigation-drawer v-model="drawer" app class="primary">
       <v-layout column align-center>
         <v-flex class="mt-5">
-          <v-avatar size="100">
-            <img src="/assets/karolina.jpg" alt="" />
-          </v-avatar>
-          <p class="white--text subheading mt-1">
-            The Net Ninja
+          <v-btn class="buttonAvatar" :to="links[2].route">
+            <v-avatar size="100">
+              <img src="/assets/karolina.jpg" alt="" />
+            </v-avatar>
+          </v-btn>
+          <p class="white--text subheading mt-1 name">
+            {{this.personDetails.name}}
           </p>
         </v-flex>
       </v-layout>
@@ -82,6 +56,7 @@ export default {
  data(){
       return {
         drawer: false,
+        personDetails: {},
         links: [
           { icon: 'dashboard', text: 'Zarządzaj', route: '/admin-panel' },
           { icon: 'folder', text: 'Strona kursu', route: '/course' },
@@ -102,12 +77,33 @@ export default {
     isAdmin() {
       return authService.isAdmin();
     }
+  },
+  beforeCreate() {
+  console.log(this);
+    this.$http
+      .get("get-details", null, {
+        headers: {
+          Accept: "application/json"
+        }
+      })
+      .then(response => {
+        console.log(response.body.success);
+        this.personDetails = response.body.success;
+      });
   }
-  }
+}
 </script>
 
 
 <style lang="scss" scoped>
-   @import '../../../scss/main.scss'
+   @import '../../../scss/main.scss';
+  .name{
+    text-align: center;
+  }
+  .buttonAvatar{
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+  }
 
 </style>

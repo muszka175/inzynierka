@@ -1,5 +1,5 @@
 <template>
-    <div>Uzupełnanka</div>
+    <div>Uzupełnanka, gra jeszcze niedostęna</div>
 </template>
 
 <script>

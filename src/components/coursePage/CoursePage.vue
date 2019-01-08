@@ -1,22 +1,21 @@
 <template>
   <main id="my-course">
     <course-header></course-header> 
-    <!-- <Navbar /> -->
-    <course></course>
+    <v-content class="mx-4 mb-4">
+      <course></course>
+    </v-content>
   </main>
 </template>
 
 <script>
 import CoursePageHeader from "./CoursePageHeader.vue";
-import MyCourse from "./MyCourse.vue";
-// import Navbar from './Navbar.vue'
+import MainGames from './MainGames.vue';
 import authService from "../../services/authService";
 
 export default {
   components: {
     "course-header": CoursePageHeader,
-    "course": MyCourse,
-    // "Navbar": Navbar,
+    "course": MainGames,
   },
   data() {
     return {};

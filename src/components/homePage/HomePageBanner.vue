@@ -21,21 +21,11 @@ export default {
       slide: 0,
       sliding: null,
       pictures: [
-        {
-          src: "./../../assets/japan01.jpg"
-        },
-        {
-          src: "./../../assets/japan00.jpg"
-        },
-        {
-          src: "./../../assets/japan02.jpg"
-        },
-        {
-          src: "/../../assets/japan03.jpg"
-        },
-        {
-          src: "./../../assets/japan04.jpg"
-        }
+        {src: "./../../assets/japan01.jpg"},
+        {src: "./../../assets/japan00.jpg"},
+        {src: "./../../assets/japan02.jpg"},
+        {src: "/../../assets/japan03.jpg"},
+        {src: "./../../assets/japan04.jpg"}
       ]
     }
   },

@@ -5,43 +5,103 @@
           <div class="quiz-container">
             <div v-if="!type">
               <div class="row">
-              <div class="col-md-4"><div class="cube"><a @click="selectType(1)">Kanji - Kana</a></div></div>
-              <div class="col-md-4"><div class="cube"><a @click="selectType(2)">Kanji - Polski</a></div></div>
-              <div class="col-md-4"><div class="cube"><a @click="selectType(3)">Kana - Polski</a></div></div>
-              <div class="col-md-4"><div class="cube"><a @click="selectType(4)">Polski - Kanji</a></div></div>
-              <div class="col-md-4"><div class="cube"><a @click="selectType(5)">Polski - Kana</a></div></div>
+                <div class="col-md-4">
+                  <div class="cube">
+                    <a @click="selectType(1)">Kanji - Kana</a>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="cube">
+                    <a @click="selectType(2)">Kanji - Polski</a>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="cube">
+                    <a @click="selectType(3)">Kana - Polski</a>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="cube">
+                    <a @click="selectType(4)">Polski - Kanji</a>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="cube">
+                    <a @click="selectType(5)">Polski - Kana</a>
+                  </div>
+                </div>
               </div>
             </div>
             <div v-if="type">
             <div class="row">
               <div class="col-md-6 game-holder">
                 <div class="quiz">
-                  <span v-if="this.type === 1 || this.type === 2">{{ shuffledWords[this.index].kanji }}</span>
-                  <span v-if="this.type === 3">{{ shuffledWords[this.index].kana }}</span>
-                  <span v-if="this.type === 4 || this.type === 5">{{ shuffledWords[this.index].polish }}</span>
+                  <span 
+                    class="quizWord" 
+                    v-if="this.type === 1 || this.type === 2"
+                  >
+                    {{ shuffledWords[this.index].kanji }}
+                  </span>
+                  <span 
+                    class="quizWord"
+                    v-if="this.type === 3"
+                  >
+                    {{ shuffledWords[this.index].kana }}
+                  </span>
+                  <span 
+                    class="quizWord" 
+                    v-if="this.type === 4 || this.type === 5"
+                  >
+                    {{ shuffledWords[this.index].polish }}
+                  </span>
                 </div>
                 <div class="button-container">
-                  <button v-bind:class="{success: showSuccess && wordIndex === index, 
-                  wrong: isWrong && clickedIndex === wordIndex}" 
-                  :disabled="clickedAnswer" v-for="wordIndex in wordIndexes" @click="checkResult(wordIndex)">
-                  <span v-if="type === 1 || type === 5">{{ shuffledWords[wordIndex].kana }}</span>
-                  <span v-if="type === 2 || type === 3">{{ shuffledWords[wordIndex].polish }}</span>
-                  <span v-if="type === 4">{{ shuffledWords[wordIndex].kanji }}</span>
+                  <button 
+                    v-bind:class="{success: showSuccess && wordIndex === index, 
+                    wrong: isWrong && clickedIndex === wordIndex}" 
+                    :disabled="clickedAnswer" 
+                    v-for="wordIndex in wordIndexes" 
+                    @click="checkResult(wordIndex)"
+                    :key="wordIndex">
+                  <span v-if="type === 1 || type === 5">
+                    {{ shuffledWords[wordIndex].kana }}
+                  </span>
+                  <span v-if="type === 2 || type === 3">
+                    {{ shuffledWords[wordIndex].polish }}
+                  </span>
+                  <span v-if="type === 4">
+                    {{ shuffledWords[wordIndex].kanji }}
+                  </span>
                   </button>
                 </div>
-                <button @click="nextQuestion" class="next" :disabled="this.clickedNext">następne</button>
-                <div>Pytanie: <span>{{this.index +1}}/{{this.words.length +1}}</span></div>
+                <button 
+                  @click="nextQuestion" 
+                  class="next" 
+                  :disabled="this.clickedNext"
+                >
+                  Następne
+                </button>
+                <div>
+                  Pytanie: 
+                  <span>
+                    {{this.index +1}}/{{this.max_points = this.words.length +1}}
+                  </span>
+                </div>
               </div>
-            <div class="result col-md-3">Twój wynik: <span>{{this.points}}</span></div>
+            <div class="result col-md-3">
+              Twój wynik: 
+              <span>{{this.points}}</span>
             </div>
           </div>
         </div>
-        </div>
       </div>
     </div>
+  </div>
+  </div>
 </template>
 
 <script>
+import authService from "../../services/authService";
 export default {
   props: ["words", "type"],
   data() {
@@ -56,11 +116,14 @@ export default {
       clickedNext: true,
       clickedAnswer: false,
       points: 0,
-      type: 0
+      type: 0,
+      category: 0,
+      game: 0,
+      max_points: 0
     };
   },
   methods: {
-        selectType(type) {
+    selectType(type) {
       this.type = type;
     },
     shuffle(a) {
@@ -112,14 +175,28 @@ export default {
         console.log(generatedIndex);
         this.wordIndexes.push(generatedIndex);
       }
-      console.log("random", this.wordIndexes);
-      console.log("długość", this.words.length);
       this.shuffle(this.wordIndexes);
     }
   },
+  created() {
+    (this.category = this.$route.params.categoryId),
+      (this.game = this.$route.params.gameId);
+  },
   mounted() {
     this.randomWords();
-    console.log("Wybrany typ gry:", this.type);
+  },
+  beforeDestroy() {
+    const gameProgress = {
+      score: this.points,
+      game: this.game,
+      category: this.category,
+      max_points: this.max_points
+    };
+    this.$http.post("progress", gameProgress, {
+      headers: {
+        Authorization: `Bearer ${authService.getToken()}`
+      }
+    });
   },
   updated() {}
 };
