@@ -164,7 +164,7 @@ export default {
     console.log(this);
     this.$http.get("texts").then(response => {
       console.log(response);
-      this.texts = response.body.success[1];
+      this.texts = response.body.success[0];
       this.originalData = Object.assign({}, this.texts);
       console.log(this.texts);
     });
