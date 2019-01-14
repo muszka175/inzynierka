@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-laravel": "rm -rf ../public/js;rm -rf ../public/css; rm -rf ../public/assets; vue-cli-service build --no-clean --dest ../public && mv ../public/index.html ../resorces/views/empty.blade.php",
+    "build-laravel": "rm -rf ../public/js;rm -rf ../public/css; rm -rf ../public/assets; vue-cli-service build --no-clean --dest ../public && mv ../public/index.html ../resources/views/empty.blade.php",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit"
