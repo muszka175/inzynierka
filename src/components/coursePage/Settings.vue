@@ -1,62 +1,7 @@
 <template>
     <main class="settingsSection">  
-        <course-header></course-header>
-        <!-- <div class="container">
-          <div class="row">
-            <div class="settings-container col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2">
-                <div class="settings"> 
-                    <h1>Ustawienia</h1>
-                    <div class="message">{{this.message}}</div>
-                    <form class="form" method="post" action="#" v-if="!submitted">
-                <div class="field" :class="{'has-error': errors.hasOwnProperty('name') }">
-                    <input v-model="personDetails.name" data-vv-rules="alpha|min:3" class="form-control" type="text" name="name" placeholder="Imię"/>
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <p class="text-danger" v-if="errors.hasOwnProperty('name')">{{ errors.name[0] }}</p>
-                </div>
-                 <div class="field" :class="{'has-error': errors.hasOwnProperty('surname') }">
-                    <input v-model="personDetails.surname" class="form-control" type="text" name="surname" placeholder="Nazwisko" data-vv-rules="alpha|min:3"/>
-                    <i class="fa fa-address-card" aria-hidden="true"></i>
-                    <p class="text-danger" v-if="errors.hasOwnProperty('surname')">{{ errors.surname[0] }}</p>
-                </div>
-                <div class="field" :class="{'has-error': errors.hasOwnProperty('email') }">
-                    <input v-model="personDetails.email" data-vv-rules="email" class="form-control" type="email" name="email" placeholder="E-mail"/>
-                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                    <p class="text-danger" v-if="errors.hasOwnProperty('email')">{{ errors.email[0] }}</p>
-                </div> 
-                <div class="field" :class="{'has-error': errors.hasOwnProperty('password') }">
-                    <input v-model="personDetails.password" ddata-vv-rules="password" class="form-control" type="password" name="password" placeholder="Stare hasło"/>
-                    <i class="fa fa-lock" aria-hidden="true"></i>
-                    <p class="text-danger" v-if="errors.hasOwnProperty('password')">{{ errors.password[0] }}</p>
-                </div>
-                <div class="field" :class="{'has-error': errors.hasOwnProperty('changedPassword') }">
-                    <input v-model="changedPassword" ddata-vv-rules="password" class="form-control" type="password" name="password" placeholder="Nowe hasło"/>
-                    <i class="fa fa-lock" aria-hidden="true"></i>
-                    <p class="text-danger" v-if="errors.hasOwnProperty('password')">{{ errors.password[0] }}</p>
-                </div>
-                <div class="field" v-if="changedPassword !== ''">
-                    <input v-model="confirmPassword" data-vv-rules="confirmPassword" class="form-control" type="password" name="confirmPassword" placeholder="Powtórz hasło" required/>
-                    <i class="fa fa-lock" aria-hidden="true"></i>
-                    <p class="text-danger" v-if="changedPassword !== confirmPassword">Hasła nie są zgodne</p>
-                </div>
-                <div class="radios">
-                    <div class="field radioButton" :class="{'has-error': errors.hasOwnProperty('sex') }">
-                    <input id="box1" class="form-control" type="radio" name="sex" value="Woman" v-model="personDetails.sex"/>
-                    <label class="women" for="box1">Kobieta</label>
-                    <input id="box2" class="form-control" type="radio" name="sex" value="Man" v-model="personDetails.sex"/>
-                    <label for="box2">Mężczyzna</label>
-                    </div>
-                    <p class="text-danger" v-if="errors.hasOwnProperty('sex')">{{ errors.sex[0] }}</p>
-                </div> 
-              <div class="field" :class="{'has-error': errors.hasOwnProperty('birthday') }">
-                    <input v-model="personDetails.birthday" class="form-control" type="date" name="birthday" placeholder="Data urodzenia" data-vv-rules="'required'"/>
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                </div>
-                <p class="submit"><input @click="change" type="button" name="sent" value="Zmień"/></p>
-                </form>
-            </div>
-            </div>
-            </div>
-            </div> -->
+      <course-header></course-header>
+      <sidebar></sidebar>
     <v-layout class="ma-5 login">
       <v-flex xs12 sm6 offset-sm3 class="card-flex">
         <v-card class="mb-5 card">
@@ -173,10 +118,12 @@
 
 <script>
 import CoursePageHeader from "./CoursePageHeader.vue";
+import SidebarLeft from "../coursePage/SidebarLeft.vue";
 
 export default {
   components: {
-    "course-header": CoursePageHeader
+    "course-header": CoursePageHeader,
+    "sidebar": SidebarLeft
   },
   data() {
     return {

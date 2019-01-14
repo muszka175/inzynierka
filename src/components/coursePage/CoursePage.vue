@@ -29,16 +29,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.main-container {
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-.description {
-  display: block;
-  margin-bottom: 30px;
-  font-size: 30px;
-  margin-left: 25px;
-}
-</style>
