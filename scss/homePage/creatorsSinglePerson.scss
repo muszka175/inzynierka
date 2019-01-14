@@ -1,8 +1,10 @@
 .team-member{
     text-align: center;
     .team-member-image{
+        margin-left: 50px;
         position: relative;
         overflow: hidden;
+        width: 60%;
         img{
             width: 100%;
             height: auto;

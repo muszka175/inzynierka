@@ -60,28 +60,28 @@ export default {
     return {
       newPassword: {
         password: "",
-        confirmPassword: "",
+        confirmPassword: ""
       },
       show1: false,
       show2: false,
       passwordRules: [
-          value => !!value || 'Required.',
-          v => v.length >= 5 || 'Min 5 characters',
-      ],
+        value => !!value || "Required.",
+        v => v.length >= 5 || "Min 5 characters"
+      ]
     };
   },
   methods: {
     setPassword() {
-       if(this.$refs.form.validate()){
+      if (this.$refs.form.validate()) {
         const success = () => {
-            this.isError = false;
-            this.$router.push("/login");
-            location.reload();
-          };
-          const error = () => {
-            this.isError = true;
-          };
-          authService.login(this.login, success, error);
+          this.isError = false;
+          this.$router.push("/login");
+          location.reload();
+        };
+        const error = () => {
+          this.isError = true;
+        };
+        authService.login(this.login, success, error);
       }
     }
   }

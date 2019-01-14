@@ -16,26 +16,26 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       slide: 0,
       sliding: null,
       pictures: [
-        {src: "./../../assets/japan01.jpg"},
-        {src: "./../../assets/japan00.jpg"},
-        {src: "./../../assets/japan02.jpg"},
-        {src: "/../../assets/japan03.jpg"},
-        {src: "./../../assets/japan04.jpg"}
+        { src: "./../../assets/japan01.jpg" },
+        { src: "./../../assets/japan00.jpg" },
+        { src: "./../../assets/japan02.jpg" },
+        { src: "/../../assets/japan03.jpg" },
+        { src: "./../../assets/japan04.jpg" }
       ]
-    }
+    };
   },
   methods: {
-    onSlideStart (slide) {
-      this.sliding = true
+    onSlideStart(slide) {
+      this.sliding = true;
     },
-    onSlideEnd (slide) {
-      this.sliding = false
+    onSlideEnd(slide) {
+      this.sliding = false;
     }
   }
-}
+};
 </script>

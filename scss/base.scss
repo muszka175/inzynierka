@@ -12,6 +12,18 @@ ul {
     margin: 0;
     padding: 0;
 }
+a {
+    &:hover {
+        text-decoration: none;
+    }
+}
+.v-toolbar--fixed{
+    position: unset;
+}
+
+.main {
+    padding-bottom: 150px;
+}
 
 // main {
 //     padding-top: 150px;

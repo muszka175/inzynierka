@@ -85,60 +85,6 @@
     }
 }
 
-@keyframes shadowFadeOut {
-    0% {
-      box-shadow: inset 0px 46px 0px 0px $buttonhover;
-      color: #fff;
-    }
-    100% {
-      box-shadow: inset 0px 0px 0px 0px  $buttonhover;
-      color: #fff;
-    }
+.login{
+    padding-bottom: 150px;
 }
-
-@-webkit-keyframes shadowFade {
-    0% {
-     
-      box-shadow: inset 0px 0px 0px 0px $buttonhover;
-      color: #fff;
-    }
-    100% {
-    
-      box-shadow: inset 0px 46px 0px 0px $buttonhover;
-      color: #fff;
-    }
-}
-
-@-webkit-keyframes shadowFadeOut {
-    0% {     
-      box-shadow: inset 0px 46px 0px 0px $buttonhover;
-      color: #fff;
-    }
-    100% {
-   
-      box-shadow: inset 0px 0px 0px 0px $buttonhover;
-      color: #fff;
-    }
-}
-
-@-moz-keyframes shadowFade {
-    0% {
-      box-shadow: inset 0px 0px 0px 0px $buttonhover;
-      color: #fff;
-    }
-    100% {
-      box-shadow: inset 0px 46px 0px 0px $buttonhover;
-      color: #fff;
-    }
-}
-
-@-moz-keyframes shadowFadeOut {
-    0% {
-      box-shadow: inset 0px 44px 0px 0px $buttonhover;
-      color: #fff;
-    }
-    100% {
-      box-shadow: inset 0px 0px 0px 0px $buttonhover;
-      color: #fff;
-    }
-} 

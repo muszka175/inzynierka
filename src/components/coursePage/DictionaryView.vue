@@ -1,6 +1,6 @@
 <template>
   <div class="section-dictionary">
-    <div class="container"> 
+    <div class="container">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -11,7 +11,7 @@
           </tr>
         </thead>
         <tbody>
-        <tr v-for="word in words">
+          <tr v-for="word in words">
             <td>
               <div class="column">{{word.id}}</div>
             </td>
@@ -24,7 +24,7 @@
             <td>
               <div class="column">{{word.kana}}</div>
             </td>
-        </tr>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -32,17 +32,13 @@
 </template>
 
 <script>
-
-
 export default {
   props: ["words"],
-  data () {
-    return{
-
-    }
+  data() {
+    return {};
   },
   mounted() {
-    console.log("słowa",this.words)
+    console.log("słowa", this.words);
   }
-}
+};
 </script>

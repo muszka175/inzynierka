@@ -17,15 +17,13 @@
 
 <script>
 export default {
-  props: ['texts'],
-  data () {
-    return {
-
-    }
+  props: ["texts"],
+  data() {
+    return {};
   },
-   mounted() {
+  mounted() {
     console.log("text mounted");
-    console.log('this', this.texts);
+    console.log("this", this.texts);
   }
-}
+};
 </script>

@@ -11,11 +11,9 @@
 
 <script>
 export default {
-props: ['texts'],
-  data () {
-    return {
-
-    }
+  props: ["texts"],
+  data() {
+    return {};
   }
-}
+};
 </script>

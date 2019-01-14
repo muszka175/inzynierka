@@ -1,0 +1,18 @@
+.empty-component {
+    background-color: #fafafa;
+    align-items: center;
+    display: flex;
+
+    .empty-container {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        color: #7A8180;
+        .empty-header2{
+            font-size: 50px;
+        }
+        .empty-icon{
+            font-size: 90px;
+        }
+    }
+}

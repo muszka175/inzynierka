@@ -5,7 +5,7 @@
       <v-flex xs12 sm6 offset-sm3 class="card-flex">
         <v-card class="mb-5 card">
           <v-card-title primary-title>
-            <h3 class="headline mb-0 mt-2 text-uppercase">Register</h3>
+            <h3 class="headline mb-0 mt-2 text-uppercase">Zarejestruj się</h3>
           </v-card-title>
           <v-card-text>
             <v-form class="px3" ref="form" method="post" action="#" v-if="!submitted">
@@ -29,7 +29,7 @@
                 v-model="newUser.email"
                 prepend-icon="email"
                 label="E-mail"
-                hint="Your e-mail address"
+                hint="Twój adres email"
               >
               </v-text-field>
               <v-text-field
@@ -40,7 +40,7 @@
                 class="formField"
                 label="Password"
                 v-model="newUser.password"
-                hint="At least 5 characters"
+                hint="Minimum 5 znaków"
                 counter
                 @click:prepend="show1 = !show1"
               >
@@ -53,7 +53,7 @@
                 class="formField"
                 label="Repeat password"
                 v-model="confirmPassword"
-                hint="At least 5 characters"
+                hint="Minimum 5 znaków."
                 counter
                 @click:prepend="show2 = !show2"
               >
@@ -117,7 +117,7 @@
 </template>
 
 <script>
-import format from 'date-fns/format'
+import format from "date-fns/format";
 import HomePageHeader from "./HomePageHeader.vue";
 import authService from "../../services/authService";
 
@@ -135,7 +135,7 @@ export default {
         password: "",
         sex: "",
         birthday: null,
-        remember: false,
+        remember: false
       },
       submitted: false,
       menu: false,
@@ -144,34 +144,32 @@ export default {
       isError: false,
       show1: false,
       show2: false,
-      radioRules: [
-        v => !!v || 'Wybierz płeć'
-      ],
+      radioRules: [v => !!v || "Wybierz płeć"],
       inputRules: [
-        value => !!value || 'Required.',
-        v => v.length >= 3 || 'minimum length is 3 characters'
+        value => !!value || "Wymagane..",
+        v => v.length >= 3 || "Wymagane min. 3 znaki."
       ],
       passwordRules: [
-        value => !!value || 'Required.',
-        v => v.length >= 5 || 'Min 5 characters',
+        value => !!value || "Wymagane.",
+        v => v.length >= 5 || "Wymagane min. 5 znaków."
       ],
       emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid',
+        v => !!v || "Wymagane.",
+        v => /.+@.+/.test(v) || "Niepoprawny adres email."
       ]
     };
   },
-   watch: {
-      menu (val) {
-        val && this.$nextTick(() => (this.$refs.picker.activePicker = 'YEAR'))
-      }
-    },
+  watch: {
+    menu(val) {
+      val && this.$nextTick(() => (this.$refs.picker.activePicker = "YEAR"));
+    }
+  },
   methods: {
-    save (birthday) {
-      this.$refs.menu.save(birthday)
+    save(birthday) {
+      this.$refs.menu.save(birthday);
     },
     register() {
-      if(this.$refs.form.validate()){
+      if (this.$refs.form.validate()) {
         const success = () => {
           this.submitted = true;
         };
@@ -181,7 +179,7 @@ export default {
         };
         authService.register(this.newUser, success, error);
       }
-    },
-  },
+    }
+  }
 };
 </script>

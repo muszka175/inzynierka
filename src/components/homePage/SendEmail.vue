@@ -52,17 +52,17 @@ export default {
   },
   methods: {
     sendEmail() {
-    //   if (this.$refs.form.validate()) {
-    //     const success = () => {
-    //       this.isError = false;
-    //       this.$router.push("/course");
-    //       location.reload();
-    //     };
-    //     const error = () => {
-    //       this.isError = true;
-    //     };
-    //     authService.login(this.login, success, error);
-    //   }
+      //   if (this.$refs.form.validate()) {
+      //     const success = () => {
+      //       this.isError = false;
+      //       this.$router.push("/course");
+      //       location.reload();
+      //     };
+      //     const error = () => {
+      //       this.isError = true;
+      //     };
+      //     authService.login(this.login, success, error);
+      //   }
     }
   }
 };

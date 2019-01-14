@@ -1,10 +1,14 @@
 .cube{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     background-color: #1abc9c;
-    height: 200px;
+    min-height: 200px;
     margin:10px 10px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
+    box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.1);
     &:hover{
         background-color: $brand-primary-dark;
         cursor: pointer;
@@ -20,6 +24,18 @@
         align-items: center;
         flex-direction: column;
         text-decoration: none;
+        padding: 10px;
+        flex: 1;
+    }
+    .subcube{
+        background-color: #f5f5f5;
+        flex: 0 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 10px;
+        .percent{
+            padding-left: 10px;
+        }
     }
 }
-    

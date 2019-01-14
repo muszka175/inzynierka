@@ -10,33 +10,32 @@
 </template>
 
 <script>
-import HomePageAboutCourse from './HomePageAboutCourse.vue';
-import HomePageBanner from './HomePageBanner.vue';
-import HomePageContact from './HomePageContact.vue';
-import HomePageCreator from './HomePageCreators.vue';
-import HomePageHeader from './HomePageHeader.vue';
-import HomePageOffer from './HomePageOffer.vue';
-
+import HomePageAboutCourse from "./HomePageAboutCourse.vue";
+import HomePageBanner from "./HomePageBanner.vue";
+import HomePageContact from "./HomePageContact.vue";
+import HomePageCreator from "./HomePageCreators.vue";
+import HomePageHeader from "./HomePageHeader.vue";
+import HomePageOffer from "./HomePageOffer.vue";
 
 export default {
-    components:{
-        'about-course': HomePageAboutCourse,
-        'banner' : HomePageBanner,
-        'contact' : HomePageContact,
-        'creator' : HomePageCreator,
-        'app-header' : HomePageHeader,
-        'offer' : HomePageOffer,
-    },
-  data () {
+  components: {
+    "about-course": HomePageAboutCourse,
+    "banner": HomePageBanner,
+    "contact": HomePageContact,
+    "creator": HomePageCreator,
+    "app-header": HomePageHeader,
+    "offer": HomePageOffer,
+  },
+  data() {
     return {
       texts: []
-    }
+    };
   },
-    mounted() {
+  mounted() {
     this.$http.get("texts").then(response => {
       this.texts = response.body.success[1];
       console.log("pobrano dane", this.texts);
     });
   }
-}
+};
 </script>

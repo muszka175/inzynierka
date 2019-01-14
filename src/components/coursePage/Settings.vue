@@ -86,7 +86,7 @@
                 v-model="personDetails.email"
                 prepend-icon="email"
                 label="E-mail"
-                hint="Your e-mail address"
+                hint="Twój adres email."
               >
               </v-text-field>
               <v-text-field
@@ -96,7 +96,7 @@
                 class="formField"
                 label="Password"
                 v-model="personDetails.password"
-                hint="At least 5 characters"
+                hint="Min. 5 znaków."
                 counter
                 @click:prepend="show1 = !show1"
               >
@@ -108,7 +108,7 @@
                 class="formField"
                 label="Password"
                 v-model="changedPassword"
-                hint="At least 5 characters"
+                hint="Min. 5 znaków."
                 counter
                 @click:prepend="show1 = !show1"
               >
@@ -120,7 +120,7 @@
                 class="formField"
                 label="Repeat password"
                 v-model="confirmPassword"
-                hint="At least 5 characters"
+                hint="Min. 5 znaków."
                 counter
                 @click:prepend="show2 = !show2"
               >
@@ -184,7 +184,7 @@ export default {
       newData: {},
       submitted: false,
       confirmPassword: "",
-      changedPassword: '',
+      changedPassword: "",
       errors: {},
       somethingChanged: false,
       message: "",
@@ -192,28 +192,26 @@ export default {
       isError: false,
       show1: false,
       show2: false,
-      radioRules: [
-        v => !!v || 'Wybierz płeć'
-      ],
+      radioRules: [v => !!v || "Wybierz płeć"],
       inputRules: [
-        value => !!value || 'Required.',
-        v => v.length >= 3 || 'minimum length is 3 characters'
+        value => !!value || "Wymagane.",
+        v => v.length >= 3 || "Wymagane min. 3 znaki."
       ],
       passwordRules: [
-        value => !!value || 'Required.',
-        v => v.length >= 5 || 'Min 5 characters',
+        value => !!value || "Wymagane.",
+        v => v.length >= 5 || "Wymagane min. 5 znaków."
       ],
       emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid',
+        v => !!v || "Wymagane.",
+        v => /.+@.+/.test(v) || "Niepoprawny adres email."
       ]
     };
   },
-   watch: {
-      menu (val) {
-        val && this.$nextTick(() => (this.$refs.picker.activePicker = 'YEAR'))
-      }
-    },
+  watch: {
+    menu(val) {
+      val && this.$nextTick(() => (this.$refs.picker.activePicker = "YEAR"));
+    }
+  },
   methods: {
     change() {
       this.somethingChanged = false;
@@ -225,19 +223,19 @@ export default {
         this.newData["new_surname"] = this.personDetails.surname;
         this.somethingChanged = true;
       }
-    if (this.personDetails.email !== this.originalData.email) {
+      if (this.personDetails.email !== this.originalData.email) {
         this.newData["new_email"] = this.personDetails.email;
         this.somethingChanged = true;
       }
-    if (this.confirmPassword !== this.changedPassword) {
+      if (this.confirmPassword !== this.changedPassword) {
         this.newData["new_password"] = this.changedPassword;
         this.somethingChanged = true;
       }
-    if (this.personDetails.sex !== this.originalData.sex) {
+      if (this.personDetails.sex !== this.originalData.sex) {
         this.newData["new_sex"] = this.personDetails.sex;
         this.somethingChanged = true;
       }
-    if (this.personDetails.birthday !== this.originalData.birthday) {
+      if (this.personDetails.birthday !== this.originalData.birthday) {
         this.newData["new_birthday"] = this.personDetails.birthday;
         this.somethingChanged = true;
       }
@@ -249,16 +247,16 @@ export default {
           // console.log(response);
           this.message = "Zmieniono poprawnie dane";
           this.originalData = Object.assign({}, this.personDetails);
-          this.changedPassword = this.confirmPassword
+          this.changedPassword = this.confirmPassword;
         });
       } else {
         this.message =
           "Zmiany nie zostały zapisane, ponieważ dane nie zmieniły się";
       }
     },
-        save (birthday) {
-      this.$refs.menu.save(birthday)
-    },
+    save(birthday) {
+      this.$refs.menu.save(birthday);
+    }
   },
   beforeCreate() {
     console.log(this);

@@ -1,16 +1,24 @@
 <template>
-    <div>Uzupełnanka, gra jeszcze niedostęna</div>
+    <div id="filling-view">
+      <v-container>
+        <v-layout>
+          <v-flex>
+            <empty-component></empty-component>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </div>
 </template>
 
 <script>
-
+import EmptyComponent from "../shared/EmptyComponent.vue";
 
 export default {
-
-  data () {
-    return{
-
-    }
+  components: {
+    "empty-component": EmptyComponent
   },
-}
+  data() {
+    return {};
+  }
+};
 </script>

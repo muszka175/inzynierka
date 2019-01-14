@@ -1,6 +1,5 @@
 /* Mian stylesheet file */
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=latin-ext');
-@import "/../font-awesome/css/font-awesome.min.css";
 
 @import "variables";
 
@@ -9,6 +8,8 @@
 @import "footer";
 @import "forms";
 @import "cube";
+@import "emptyComponent";
+@import "spinner";
 
 @import "/homePage/homePageMenu";
 @import "/homePage/homePageHeader";
@@ -26,10 +27,13 @@
 @import "/coursePage/coursePageSlider";
 @import "/coursePage/coursePageMiddle";
 @import "/coursePage/coursePageSidebarLeft";
-@import "/coursePage/flashcardsCategory";
+@import "/coursePage/gameCategory";
 @import "/coursePage/flashcards";
 @import "/coursePage/quizView";
 @import "/coursePage/settings";
+@import "/coursePage/hangman";
+@import "/coursePage/stepper";
 
+@import "/adminPage/adminPanel";
 @import "/adminPage/adminPanelOptions";
 @import "/adminPage/adminPanelTexts";

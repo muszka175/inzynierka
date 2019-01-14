@@ -1,14 +1,33 @@
 <template>
-      <b-navbar-nav>
-        <li><a class="nav-button" href='/home#banner' v-smooth-scroll>STRONA GŁÓWNA</a></li>
-        <li><a class="nav-button" href='/home#about-course' v-smooth-scroll>O KURSIE</a></li>
-        <li><a class="nav-button" href='/home#offer' v-smooth-scroll>OFERTA</a></li>
-        <li><a class="nav-button" href='/home#creators' v-smooth-scroll>TWÓRCY</a></li>
-        <li><a class="nav-button" href="/home#contact" v-smooth-scroll>KONTAKT</a></li>
-          <li v-if="!isSignedIn"><router-link to="/login" exact>ZALOGUJ</router-link></li>
-          <li v-if="!isSignedIn"><router-link to="/register" exact>ZAREJESTRUJ</router-link></li>
-          <li  v-if="isSignedIn"><router-link to="/course" exact>Kurs</router-link></li>
-    </b-navbar-nav>
+  <b-navbar-nav>
+    <v-btn flat color="#ff9800" @click="signout">
+      <span class="lighten-1">Strona główna</span>
+    </v-btn>
+    <li>
+      <a class="nav-button" href="/home#banner" v-smooth-scroll>STRONA GŁÓWNA</a>
+    </li>
+    <li>
+      <a class="nav-button" href="/home#about-course" v-smooth-scroll>O KURSIE</a>
+    </li>
+    <li>
+      <a class="nav-button" href="/home#offer" v-smooth-scroll>OFERTA</a>
+    </li>
+    <li>
+      <a class="nav-button" href="/home#creators" v-smooth-scroll>TWÓRCY</a>
+    </li>
+    <li>
+      <a class="nav-button" href="/home#contact" v-smooth-scroll>KONTAKT</a>
+    </li>
+    <li v-if="!isSignedIn" class="menuButton">
+      <router-link to="/login" exact>ZALOGUJ</router-link>
+    </li>
+    <li v-if="!isSignedIn" class="menuButton">
+      <router-link to="/register" exact>ZAREJESTRUJ</router-link>
+    </li>
+    <li v-if="isSignedIn" class="menuButton">
+      <router-link to="/course" exact>Kurs</router-link>
+    </li>
+  </b-navbar-nav>
 </template>
 
 <script>

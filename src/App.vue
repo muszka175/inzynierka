@@ -6,13 +6,11 @@
 </template>
 
 <script>
-import HomePage from './components/homePage/HomePage.vue';
 import CoursePage from './components/coursePage/CoursePage.vue';
 import Footer from './components/shared/Footer.vue';
 
 export default {
   components: {
-    'home-page' : HomePage,
     'course-page': CoursePage,
     'app-footer' : Footer
   },

@@ -5,7 +5,7 @@
     <v-flex xs12 sm6 offset-sm3 class="card-flex">
       <v-card class="mt-5 card">
         <v-card-title primary-title>
-          <h3 class="headline mb-0 mt-2 text-uppercase">Login</h3>
+          <h3 class="headline mb-0 mt-2 text-uppercase">Zaloguj się</h3>
         </v-card-title>
         <v-card-text>
           <v-form class="px3 form" ref="form" method="post" action="#" v-if="!submitted">
@@ -15,7 +15,7 @@
               v-model="login.email"
               prepend-icon="person"
               label="E-mail"
-              hint="Your e-mail address"
+              hint="Twój adres email."
             >
             </v-text-field>
             <v-text-field
@@ -26,7 +26,7 @@
               class="formField"
               label="Password"
               v-model="login.password"
-              hint="At least 5 characters"
+              hint="Minimum 5 znaków."
               counter
               @click:prepend="show1 = !show1"
             >
@@ -71,36 +71,36 @@ export default {
       login: {
         email: "",
         password: "",
-        remember: false,
+        remember: false
       },
       submitted: false,
       isError: false,
       show1: false,
       passwordRules: [
-          value => !!value || 'Required.',
-          v => v.length >= 5 || 'Min 5 characters',
+        value => !!value || "Wymagane.",
+        v => v.length >= 5 || "Wymagane min. 5 znaków."
       ],
       emailRules: [
-          v => !!v || 'E-mail is required',
-          v => /.+@.+/.test(v) || 'E-mail must be valid',
-        ]
+        v => !!v || "Wymagane.",
+        v => /.+@.+/.test(v) || "Niepoprawny adres email."
+      ]
     };
   },
   beforeCreate() {
-    if(authService.getToken() !== null) this.$router.push("/course");
+    if (authService.getToken() !== null) this.$router.push("/course");
   },
   methods: {
     signin() {
-       if(this.$refs.form.validate()){
+      if (this.$refs.form.validate()) {
         const success = () => {
-            this.isError = false;
-            this.$router.push("/course");
-            location.reload();
-          };
-          const error = () => {
-            this.isError = true;
-          };
-          authService.login(this.login, success, error);
+          this.isError = false;
+          this.$router.push("/course");
+          location.reload();
+        };
+        const error = () => {
+          this.isError = true;
+        };
+        authService.login(this.login, success, error);
       }
     }
   }
