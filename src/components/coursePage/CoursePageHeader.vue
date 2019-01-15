@@ -21,12 +21,6 @@ export default {
 
   data() {
     return {
-      personDetails: {},
-      links: [
-        { icon: "dashboard", text: "Zarządzaj", route: "/admin-panel" },
-        { icon: "folder", text: "Strona kursu", route: "/course" },
-        { icon: "person", text: "Ustawienia", route: "/settings" }
-      ]
     };
   },
   methods: {

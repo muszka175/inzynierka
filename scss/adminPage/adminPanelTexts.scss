@@ -1,4 +1,4 @@
-.texts-section{
+.texts-section {
     background-color: #676056;
 }
 
@@ -7,7 +7,8 @@
     margin: auto;
     background: white;
     border-radius: 3px;
-    &:before{
+
+    &:before {
         content: '';
         position: absolute;
         top: -8px;
@@ -18,6 +19,7 @@
         background: rgba(255, 255, 255, 0.1);
         border-radius: 4px;
     }
+
     h1 {
         line-height: 55px;
         font-size: 24px;
@@ -29,29 +31,38 @@
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
     }
+
     .submit {
         text-align: center;
     }
-    p{
-        &:first-child{ 
+
+    p {
+        &:first-child {
             margin-top: 30px;
         }
-    .remember {
-        float: left;
-        label{
-            color: #a7a599;
-            font-size: 12px;
-            cursor: pointer;
+
+        .remember {
+            float: left;
+
+            label {
+                color: #a7a599;
+                font-size: 12px;
+                cursor: pointer;
             }
         }
-        .forgot{float: right;margin-right: 50px;
-            a{
+
+        .forgot {
+            float: right;
+            margin-right: 50px;
+
+            a {
                 color: #a7a599;
                 font-size: 12px;
                 text-decoration: none;
                 font-style: italic;
                 transition: all 0.3s ease-out;
-                &:hover{
+
+                &:hover {
                     color: #f2672e;
                 }
             }
@@ -59,30 +70,34 @@
     }
 }
 
-.after-register{
+.after-register {
     text-align: center;
-    .after-register-header{
+
+    .after-register-header {
         padding: 70px;
     }
-    span{
+
+    span {
         display: block;
-        &.lat-span{
+
+        &.lat-span {
             margin-bottom: 55px;
         }
     }
 }
 
-/*keyframes for input animation*/
+.panel {
+    .v-content.texts-section {
+        padding: 0 !important;
+        margin-bottom: -80px;
+    }
+}
 
-@keyframes shadowFade {
-    0% {
-      box-shadow: inset 0px 0px 0px 0px $buttonhover;
-      color: #fff;
-    }
-    100% {
-      box-shadow: inset 0px 46px 0px 0px $buttonhover;
-      color: #fff;
-    }
+.message{
+    text-align: center;
+    font-size: 20px;
+    color: #ff8400;
+    padding-top: 10px;
 }
 
 .login{

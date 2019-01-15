@@ -1,11 +1,10 @@
 <template>
   <v-content class="texts-section">
-    <v-layout class="ma-5 login">
+    <v-layout class="ma-5 panel-texts">
       <v-flex xs12 sm12 md8 lg6 offset-md2 offset-lg3 class="card-flex">
         <v-card class="mt-5 card">
           <v-card-title primary-title>
             <h3 class="headline mb-0 mt-2 text-uppercase">Teksty na stronie</h3>
-            <div class="message">{{this.message}}</div>
           </v-card-title>
           <v-card-text>
             <v-form class="px3" ref="form" method="post" action="#" v-if="!submitted">
@@ -56,6 +55,7 @@
                 :rules="inputRules"
                 hint="Opis kontaktu"
               ></v-textarea>
+              <div class="message">{{this.message}}</div>
             </v-form>
           </v-card-text>
 

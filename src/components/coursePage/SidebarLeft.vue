@@ -11,12 +11,28 @@
       </v-flex>
     </v-layout>
     <v-list class="sidebar-list">
-      <v-list-tile v-for="link in links" @click="closeSidebar" :key="link.text" router :to="link.route">
+      <v-list-tile v-if="personDetails.role === 'admin'" @click="closeSidebar" router :to="'/admin-panel'">
         <v-list-tile-action>
-          <v-icon color="#FAAC22">{{ link.icon }}</v-icon>
+          <v-icon color="#FAAC22">dashboard</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
-          <v-list-tile-title class="white--text">{{ link.text }}</v-list-tile-title>
+          <v-list-tile-title class="white--text">Zarządzaj</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+            <v-list-tile @click="closeSidebar" router :to="'/course'">
+        <v-list-tile-action>
+          <v-icon color="#FAAC22">folder</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title class="white--text">Strona kursu</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+            <v-list-tile @click="closeSidebar" router :to="'/settings'">
+        <v-list-tile-action>
+          <v-icon color="#FAAC22">person</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title class="white--text">Ustawienia</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
     </v-list>
