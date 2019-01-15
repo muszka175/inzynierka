@@ -34,7 +34,7 @@
           </v-content>
           <v-content v-if="type && !isEnd">
             <div class="row">
-              <div class="game-holder col-md-6">
+              <div class="game-holder col-md-12">
                 <div class="result">
                 Twój wynik:
                 <span>{{this.points}}</span>
@@ -142,6 +142,7 @@ export default {
       this.clickedAnswer = false;
       this.isWrong = false;
       this.showSuccess = false;
+      this.randomWords();
       if (this.index === this.max_points) {
         this.isEnd = true;
       }
