@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <v-content class="container">
     <div class="category-list" v-if="!loading">
       <div>
         <h2>Wybierz kategorie, z której chcesz odpowiadać</h2>
@@ -11,7 +11,7 @@
               v-bind:to="'/course/game/' + gameId + '/category/' + category.id"
               exact
             >{{category.name}}</router-link>
-            <div class="subcube">
+            <div class="subcube" v-if="gameId != 6">
               <v-progress-linear
                 color="secondary"
                 v-if="progress[gameId] && progress[gameId][category.id]"
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </v-content>
 </template>
 
 <script>
@@ -43,7 +43,7 @@ export default {
     };
   },
   beforeCreate() {
-    this.$http.get("courses").then(response => {
+    this.$http.get("courses/vocabulary").then(response => {
       this.categories = response.body;
       this.$http
         .get("progress", {
@@ -58,7 +58,7 @@ export default {
             if (!this.progress.hasOwnProperty(row.game)) {
               this.progress[row.game] = {};
             }
-            if (parseInt(row.score) === 0 || parseInt(row.max_points) === 0) {
+            if (parseInt(row.score) === 0 || parseInt(row.max_points) === 0 || parseInt(row.score) < 0 ) {
               this.progress[row.game][row.category] = 0;
             } else {
               this.progress[row.game][row.category] = Math.round(

@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer :value="isSidebar" app class="primary">
+  <v-navigation-drawer v-model="drawer" app disable-resize-watcher class="primary">
     <v-layout column align-center>
       <v-flex class="mt-5">
         <v-btn class="buttonAvatar" :to="links[2].route">
@@ -11,7 +11,7 @@
       </v-flex>
     </v-layout>
     <v-list class="sidebar-list">
-      <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
+      <v-list-tile v-for="link in links" @click="closeSidebar" :key="link.text" router :to="link.route">
         <v-list-tile-action>
           <v-icon color="#FAAC22">{{ link.icon }}</v-icon>
         </v-list-tile-action>
@@ -26,8 +26,19 @@
 <script>
 export default {
   computed: {
-    isSidebar() {
-      return this.$store.state.isSidebar
+    drawer: {
+      get() {
+        console.log('sidebar', this.$store.state.sidebar);
+        return this.$store.state.sidebar;
+      },
+      set(val) {
+        this.$store.commit("sidebar", val);
+      }
+    }
+  },
+  methods: {
+    closeSidebar() {
+      this.$store.commit('sidebar', false);
     }
   },
   data() {

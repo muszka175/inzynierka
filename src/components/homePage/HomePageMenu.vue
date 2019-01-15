@@ -1,8 +1,5 @@
 <template>
   <b-navbar-nav>
-    <v-btn flat color="#ff9800" @click="signout">
-      <span class="lighten-1">Strona główna</span>
-    </v-btn>
     <li>
       <a class="nav-button" href="/home#banner" v-smooth-scroll>STRONA GŁÓWNA</a>
     </li>

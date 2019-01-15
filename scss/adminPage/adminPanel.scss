@@ -1,9 +1,11 @@
 .panel{
     background-color: #fafafa;
-    margin-bottom: 150px;
     #admin-panel{
-        height: calc(100vh - 117px);
         display: flex;
         align-items: center;
     }
+}
+
+#admin-panel {
+    padding: 0 !important;
 }

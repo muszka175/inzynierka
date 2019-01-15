@@ -24,7 +24,7 @@
               :type="show1 ? 'text' : 'password'"
               name="password"
               class="formField"
-              label="Password"
+              label="Hasło"
               v-model="login.password"
               hint="Minimum 5 znaków."
               counter

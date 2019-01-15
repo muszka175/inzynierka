@@ -1,28 +1,22 @@
 <template>
-  <main v-if="authorized">
+  <div class="main" v-if="authorized">
     <main-menu class="navbar-toggleable-md"></main-menu>
     <sidebar></sidebar>
     <div class="panel">
-      <v-container id="admin-panel">
-        <v-layout>
-          <v-flex class>
-            <options></options>
-          </v-flex>
-        </v-layout>
-      </v-container>
+      <v-content id="admin-panel">
+        <router-view></router-view>
+      </v-content>
     </div>
-  </main>
+  </div>
 </template>
 
 <script>
-import Options from "./AdminPanelOptions.vue";
 import Menu from "../coursePage/CoursePageHeader.vue";
 import SidebarLeft from "../coursePage/SidebarLeft.vue";
 import authService from "../../services/authService";
 
 export default {
   components: {
-    options: Options,
     "main-menu": Menu,
     sidebar: SidebarLeft
   },

@@ -43,7 +43,7 @@ export default {
       return authService.isAdmin();
     },
     toggleSidebar() {
-      this.$store.commit('toggleSidebar')
+      this.$store.commit('sidebar', !this.$store.state.sidebar);
     }
   },
 };

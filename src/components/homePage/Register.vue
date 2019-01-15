@@ -12,14 +12,14 @@
               <v-text-field
                 :rules="inputRules"
                 v-model="newUser.name"
-                label="Name"
+                label="Imię"
                 prepend-icon="person"
                 counter
               ></v-text-field>
               <v-text-field
                 :rules="inputRules"
                 v-model="newUser.surname"
-                label="Surname"
+                label="Nazwisko"
                 prepend-icon="person_pin"
                 counter
               ></v-text-field>
@@ -38,7 +38,7 @@
                 :type="show1 ? 'text' : 'password'"
                 name="password"
                 class="formField"
-                label="Password"
+                label="Hasło"
                 v-model="newUser.password"
                 hint="Minimum 5 znaków"
                 counter
@@ -51,7 +51,7 @@
                 :type="show2 ? 'text' : 'password'"
                 name="password"
                 class="formField"
-                label="Repeat password"
+                label="Powtórz hasło"
                 v-model="confirmPassword"
                 hint="Minimum 5 znaków."
                 counter
@@ -77,7 +77,7 @@
                 <v-text-field
                   slot="activator"
                   v-model="newUser.birthday"
-                  label="Birthday date"
+                  label="Data urodzin"
                   prepend-icon="event"
                   readonly
                 ></v-text-field>
@@ -98,7 +98,7 @@
                 </div>
               </div>
               <div>
-                <v-btn flat class="primary mx-0 mt-3" @click="register">Register</v-btn>
+                <v-btn flat class="primary mx-0 mt-3" @click="register">Zarejestruj</v-btn>
               </div>
             </v-form>
           </v-card-text>
@@ -140,18 +140,17 @@ export default {
       submitted: false,
       menu: false,
       confirmPassword: "",
-      errors: {},
       isError: false,
       show1: false,
       show2: false,
       radioRules: [v => !!v || "Wybierz płeć"],
       inputRules: [
         value => !!value || "Wymagane..",
-        v => v.length >= 3 || "Wymagane min. 3 znaki."
+        v => v && v.length >= 3 || "Wymagane min. 3 znaki."
       ],
       passwordRules: [
         value => !!value || "Wymagane.",
-        v => v.length >= 5 || "Wymagane min. 5 znaków."
+        v => v && v.length >= 5 || "Wymagane min. 5 znaków."
       ],
       emailRules: [
         v => !!v || "Wymagane.",

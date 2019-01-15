@@ -1,0 +1,18 @@
+.endGame-component {
+    text-align: center;
+
+    .endGame-container {
+        display: flex;
+        flex-direction: column;
+        color: #2b2a2a;
+        .endGameIcon {
+            color: #f0be74;
+            font-size: 120px;
+            padding-top: 30px;
+            padding-bottom: 20px;
+        }
+        .empty-header {
+            padding-bottom: 15px;
+        }
+    }
+}

@@ -1,9 +1,6 @@
 <template>
-  <main class="texts-section">
-    <main-menu class="navbar-toggleable-md"></main-menu>
-    <sidebar></sidebar>
-    <spinner v-if="loading === true"></spinner>
-    <v-layout v-else class="ma-5 login">
+  <v-content class="texts-section">
+    <v-layout class="ma-5 login">
       <v-flex xs12 sm12 md8 lg6 offset-md2 offset-lg3 class="card-flex">
         <v-card class="mt-5 card">
           <v-card-title primary-title>
@@ -68,20 +65,11 @@
         </v-card>
       </v-flex>
     </v-layout>
-  </main>
+  </v-content>
 </template>
 
 <script>
-import Menu from "../coursePage/CoursePageHeader.vue";
-import Spinner from "../shared/Spinner.vue";
-import SidebarLeft from "../coursePage/SidebarLeft.vue";
-
 export default {
-  components: {
-    "main-menu": Menu,
-    "spinner": Spinner,
-    sidebar: SidebarLeft
-  },
   data() {
     return {
       newData: {},
@@ -95,18 +83,6 @@ export default {
         v => (v && v.length >= 3) || "Wymagane min. 3 znaki."
       ]
     };
-  },
-  computed: {
-    loading() {
-      return this.$store.state.loading
-    },
-    originalData() {
-      const texts = this.$store.state.adminTexts;
-      console.log('texts', texts);
-      this.texts = Object.assign({}, texts);
-      console.log(this.texts);
-      return texts;
-    }
   },
   methods: {
     add() {

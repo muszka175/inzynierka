@@ -13,6 +13,7 @@ import Settings from "./components/coursePage/Settings.vue";
 import Flashcards from "./components/coursePage/Flashcards.vue";
 import Game from "./components/coursePage/Game.vue";
 import AdminPanel from "./components/adminPanel/AdminPanelMain.vue";
+import Options from "./components/adminPanel/AdminPanelOptions.vue";
 import UsersOption from "./components/adminPanel/AdminPanelUsers.vue";
 import TextsOption from "./components/adminPanel/AdminPanelTexts.vue";
 import FacebookOption from "./components/adminPanel/AdminPanelFacebook.vue";
@@ -23,8 +24,7 @@ Vue.use(Router);
 export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: "/",
       component: HomePage
     },
@@ -43,8 +43,7 @@ export default new Router({
     {
       path: "/course",
       component: CoursePage,
-      children: [
-        {
+      children: [{
           path: "",
           component: MainGames
         },
@@ -68,23 +67,29 @@ export default new Router({
     },
     {
       path: "/admin-panel",
-      component: AdminPanel
-    },
-    {
-      path: "/texts-option",
-      component: TextsOption
-    },
-    {
-      path: "/users-option",
-      component: UsersOption
-    },
-    {
-      path: "/facebook-option",
-      component: FacebookOption
-    },
-    {
-      path: "/payment-option",
-      component: PaymentOption
+      component: AdminPanel,
+      children: [
+        {
+          path: "",
+          component: Options
+        },
+        {
+          path: "texts-option",
+          component: TextsOption
+        },
+        {
+          path: "users-option",
+          component: UsersOption
+        },
+        {
+          path: "facebook-option",
+          component: FacebookOption
+        },
+        {
+          path: "payment-option",
+          component: PaymentOption
+        }
+      ]
     },
     {
       path: "/sendEmail",

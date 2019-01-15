@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-content class="container">
     <v-layout column>
       <h2 class="description">LISTA GIER</h2>
       <stepper></stepper>
@@ -48,7 +48,7 @@
         </div>
       </div>
     </v-layout>
-  </v-container>
+  </v-content>
 </template>
 
 <script>

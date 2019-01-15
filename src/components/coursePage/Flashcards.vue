@@ -2,7 +2,8 @@
     <div class="flashcards-section" v-if="this.words.length > 0">
       <div class="flashcards-background">
         <div class="container cards">
-            <div class="type-buttons" v-if="!type">
+            <v-content class="type-buttons" v-if="!type">
+              <h2 class="flashcard-header">Wybierz, w jakim języku mają się wyświetlać słowa:</h2>
               <div class="row">
                 <div class="cube-container col-md-4">
                   <div class="cube">
@@ -20,8 +21,10 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div v-if="type">
+            </v-content>
+            <v-content v-if="type && !isEnd">
+              <p>Klikając przycisk <strong>znam</strong>, przejdziesz do następnego słowa.</p>
+              <p>Klikając przycisk <strong>nie znam</strong>, zostaną Ci pokazane tłumaczenia.</p>
           <div class="row">
             <div class="flashcards-container col-lg-6 col-md-8 col-sm-8">
               <div class="flashcards"> 
@@ -68,15 +71,18 @@
                 </div>
               </div>
               <div class="submit-container">
-                <input @click="changeWord" class="true" type="submit" value="Znam"/>
-                <input @click="showResult" class="false" type="submit" value="Nie znam"/>
+                <v-btn @click="changeWord" class="secondary">Znam</v-btn>
+                <v-btn @click="showResult" class="secondary">Nie znam</v-btn>
               </div>
               <div>Pytanie: 
-                <span>{{this.index +1}}/{{this.max_points = this.words.length }}</span>
+                <span><strong>{{this.index +1}}</strong>/{{this.max_points = this.words.length }}</span>
               </div>
             </div>
           </div>
-        </div>
+        </v-content>
+      <div v-if="isEnd">
+        <end-game></end-game>
+      </div>
       </div>
     </div>
     </div>
@@ -84,8 +90,12 @@
 
 <script>
 import authService from "../../services/authService";
+import EndGameComponent from "./EndGameComponent.vue";
 
 export default {
+  components: {
+    "end-game": EndGameComponent,
+  },
   props: ['words'],
   data() {
     return {
@@ -95,6 +105,7 @@ export default {
       category: 0,
       game: 0,
       max_points: 0,
+      isEnd: false
     };
   },
   methods: {
@@ -107,13 +118,18 @@ export default {
     changeWord(){
       this.index += 1;
       this.result = false;
-    }
+      if (this.index === this.max_points){
+        this.isEnd = true;
+      }
+    },
   },
   created() {
+    console.log('this', this);
     this.category = this.$route.params.categoryId,
     this.game = this.$route.params.gameId
   },
   beforeDestroy() {
+    console.log('score', this.index);
     const gameProgress = {
       score: this.index,
       game: this.game,

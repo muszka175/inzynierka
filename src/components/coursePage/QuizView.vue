@@ -1,108 +1,94 @@
 <template>
-    <div class="quiz-section" v-if="shuffledWords.length > 0">
-      <div class="quiz-background">
-        <div class="container cards">
-          <div class="quiz-container">
-            <div v-if="!type">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="cube">
-                    <a @click="selectType(1)">Kanji - Kana</a>
-                  </div>
+  <div class="quiz-section" v-if="shuffledWords.length > 0">
+    <div class="quiz-background">
+      <div class="container cards">
+        <div class="quiz-container">
+          <v-content v-if="!type">
+            <div class="row">
+              <div class="col-md-4 col-sm-6">
+                <div class="cube">
+                  <a @click="selectType(1)">Kanji - Kana</a>
                 </div>
-                <div class="col-md-4">
-                  <div class="cube">
-                    <a @click="selectType(2)">Kanji - Polski</a>
-                  </div>
+              </div>
+              <div class="col-md-4 col-sm-6">
+                <div class="cube">
+                  <a @click="selectType(2)">Kanji - Polski</a>
                 </div>
-                <div class="col-md-4">
-                  <div class="cube">
-                    <a @click="selectType(3)">Kana - Polski</a>
-                  </div>
+              </div>
+              <div class="col-md-4 col-sm-6">
+                <div class="cube">
+                  <a @click="selectType(3)">Kana - Polski</a>
                 </div>
-                <div class="col-md-4">
-                  <div class="cube">
-                    <a @click="selectType(4)">Polski - Kanji</a>
-                  </div>
+              </div>
+              <div class="col-md-4 col-sm-6">
+                <div class="cube">
+                  <a @click="selectType(4)">Polski - Kanji</a>
                 </div>
-                <div class="col-md-4">
-                  <div class="cube">
-                    <a @click="selectType(5)">Polski - Kana</a>
-                  </div>
+              </div>
+              <div class="col-md-4 col-sm-6">
+                <div class="cube">
+                  <a @click="selectType(5)">Polski - Kana</a>
                 </div>
               </div>
             </div>
-            <div v-if="type">
+          </v-content>
+          <v-content v-if="type && !isEnd">
             <div class="row">
-              <div class="col-md-6 game-holder">
+              <div class="game-holder col-md-6">
+                <div class="result">
+                Twój wynik:
+                <span>{{this.points}}</span>
+              </div>
                 <div class="quiz">
-                  <span 
-                    class="quizWord" 
-                    v-if="this.type === 1 || this.type === 2"
-                  >
-                    {{ shuffledWords[this.index].kanji }}
-                  </span>
-                  <span 
+                  <span
                     class="quizWord"
-                    v-if="this.type === 3"
-                  >
-                    {{ shuffledWords[this.index].kana }}
-                  </span>
-                  <span 
-                    class="quizWord" 
+                    v-if="this.type === 1 || this.type === 2"
+                  >{{ shuffledWords[this.index].kanji }}</span>
+                  <span class="quizWord" v-if="this.type === 3">{{ shuffledWords[this.index].kana }}</span>
+                  <span
+                    class="quizWord"
                     v-if="this.type === 4 || this.type === 5"
-                  >
-                    {{ shuffledWords[this.index].polish }}
-                  </span>
+                  >{{ shuffledWords[this.index].polish }}</span>
                 </div>
                 <div class="button-container">
-                  <button 
+                  <button
                     v-bind:class="{success: showSuccess && wordIndex === index, 
-                    wrong: isWrong && clickedIndex === wordIndex}" 
-                    :disabled="clickedAnswer" 
-                    v-for="wordIndex in wordIndexes" 
+                    wrong: isWrong && clickedIndex === wordIndex}"
+                    :disabled="clickedAnswer"
+                    v-for="wordIndex in wordIndexes"
                     @click="checkResult(wordIndex)"
-                    :key="wordIndex">
-                  <span v-if="type === 1 || type === 5">
-                    {{ shuffledWords[wordIndex].kana }}
-                  </span>
-                  <span v-if="type === 2 || type === 3">
-                    {{ shuffledWords[wordIndex].polish }}
-                  </span>
-                  <span v-if="type === 4">
-                    {{ shuffledWords[wordIndex].kanji }}
-                  </span>
+                    :key="wordIndex"
+                  >
+                    <span v-if="type === 1 || type === 5">{{ shuffledWords[wordIndex].kana }}</span>
+                    <span v-if="type === 2 || type === 3">{{ shuffledWords[wordIndex].polish }}</span>
+                    <span v-if="type === 4">{{ shuffledWords[wordIndex].kanji }}</span>
                   </button>
                 </div>
-                <button 
-                  @click="nextQuestion" 
-                  class="next" 
-                  :disabled="this.clickedNext"
-                >
-                  Następne
-                </button>
+                <v-btn @click="nextQuestion" class="secondary next" :disabled="this.clickedNext">Następne</v-btn>
                 <div>
-                  Pytanie: 
-                  <span>
-                    {{this.index +1}}/{{this.max_points = this.words.length +1}}
-                  </span>
+                  Pytanie:
+                  <span>{{this.index +1}}/{{this.max_points = this.words.length}}</span>
                 </div>
               </div>
-            <div class="result col-md-3">
-              Twój wynik: 
-              <span>{{this.points}}</span>
             </div>
-          </div>
+          </v-content>
+        </div>
+        <div v-if="isEnd">
+          <end-game></end-game>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
 <script>
 import authService from "../../services/authService";
+import EndGameComponent from "./EndGameComponent.vue";
+
 export default {
+  components: {
+    "end-game": EndGameComponent
+  },
   props: ["words", "type"],
   data() {
     return {
@@ -119,7 +105,8 @@ export default {
       type: 0,
       category: 0,
       game: 0,
-      max_points: 0
+      max_points: 0,
+      isEnd: false
     };
   },
   methods: {
@@ -155,15 +142,20 @@ export default {
       this.clickedAnswer = false;
       this.isWrong = false;
       this.showSuccess = false;
-      this.randomWords();
+      if (this.index === this.max_points) {
+        this.isEnd = true;
+      }
+    },
+    endGame() {
+      this.isEnd = true;
     },
     randomWords() {
       this.wordIndexes.length = 0;
       let generatedIndex = -1;
       this.shuffledWords = this.words.slice();
-      console.log("shuffled", this.shuffledWords);
-      this.shuffle(this.shuffledWords);
 
+      this.shuffle(this.shuffledWords);
+      console.log("original", this.shuffledWords);
       console.log("pomieszane", this.words);
 
       this.wordIndexes.push(this.index);
@@ -180,7 +172,7 @@ export default {
   },
   created() {
     (this.category = this.$route.params.categoryId),
-      (this.game = this.$route.params.gameId);
+    (this.game = this.$route.params.gameId);
   },
   mounted() {
     this.randomWords();
