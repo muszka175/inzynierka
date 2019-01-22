@@ -9,7 +9,6 @@ export default new Vuex.Store({
   },
   mutations: {
     sidebar(state, val) {
-      console.log('mutating', state, val);
       state.sidebar = val;
     }
   }

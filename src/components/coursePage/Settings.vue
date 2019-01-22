@@ -188,10 +188,7 @@ export default {
       }
 
       if (this.somethingChanged) {
-        console.log("Obiekt do wysłania", this.newData);
-
         this.$http.post("edit-account", this.newData).then(response => {
-          // console.log(response);
           this.message = "Zmieniono poprawnie dane";
           this.originalData = Object.assign({}, this.personDetails);
           this.changedPassword = this.confirmPassword;
@@ -206,7 +203,6 @@ export default {
     }
   },
   beforeCreate() {
-    console.log(this);
     this.$http
       .get("get-details", null, {
         headers: {
@@ -214,10 +210,8 @@ export default {
         }
       })
       .then(response => {
-        console.log(response);
         this.personDetails = response.body.success;
         this.originalData = Object.assign({}, this.personDetails);
-        console.log(this.personDetails);
       });
   }
 };

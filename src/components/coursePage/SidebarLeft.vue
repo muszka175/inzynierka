@@ -44,7 +44,6 @@ export default {
   computed: {
     drawer: {
       get() {
-        console.log('sidebar', this.$store.state.sidebar);
         return this.$store.state.sidebar;
       },
       set(val) {
@@ -75,7 +74,6 @@ export default {
         }
       })
       .then(response => {
-        console.log(response.body.success);
         this.personDetails = response.body.success;
       });
   }

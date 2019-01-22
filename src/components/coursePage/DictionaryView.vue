@@ -11,7 +11,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="word in words">
+          <tr v-for="word in words" :key="word.id">
             <td>
               <div class="column">{{word.id}}</div>
             </td>
@@ -37,8 +37,5 @@ export default {
   data() {
     return {};
   },
-  mounted() {
-    console.log("słowa", this.words);
-  }
 };
 </script>

@@ -124,12 +124,10 @@ export default {
     },
   },
   created() {
-    console.log('this', this);
     this.category = this.$route.params.categoryId,
     this.game = this.$route.params.gameId
   },
   beforeDestroy() {
-    console.log('score', this.index);
     const gameProgress = {
       score: this.index,
       game: this.game,

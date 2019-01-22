@@ -53,7 +53,6 @@ export default {
         })
         .then(response => {
           this.progress = {};
-          console.log("odpo", response);
           response.body.forEach(row => {
             if (!this.progress.hasOwnProperty(row.game)) {
               this.progress[row.game] = {};
@@ -66,7 +65,6 @@ export default {
               );
             }
           });
-          console.log(this.progress);
           this.loading = false;
         });
     });

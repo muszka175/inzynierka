@@ -121,7 +121,6 @@ export default {
       return a;
     },
     checkResult(index) {
-      console.log(index);
       this.clickedIndex = index;
       this.showSuccess = true;
 
@@ -132,7 +131,6 @@ export default {
         this.isWrong = true;
         this.points -= 1;
       }
-      console.log("punkty", this.points);
       this.clickedAnswer = true;
       this.clickedNext = false;
     },
@@ -156,16 +154,12 @@ export default {
       this.shuffledWords = this.words.slice();
 
       this.shuffle(this.shuffledWords);
-      console.log("original", this.shuffledWords);
-      console.log("pomieszane", this.words);
 
       this.wordIndexes.push(this.index);
-      console.log("pierwszy", this.wordIndexes);
 
       while (this.wordIndexes.length < 4) {
         generatedIndex = Math.floor(Math.random() * this.words.length);
         if (this.wordIndexes.indexOf(generatedIndex) > -1) continue;
-        console.log(generatedIndex);
         this.wordIndexes.push(generatedIndex);
       }
       this.shuffle(this.wordIndexes);
