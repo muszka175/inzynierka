@@ -134,7 +134,7 @@ export default {
       category: this.category,
       max_points: this.max_points,
     };
-    this.$http.post("progress", gameProgress, {
+    this.$http.post("progress/", gameProgress, {
       headers: {
         Authorization: `Bearer ${authService.getToken()}`
       }

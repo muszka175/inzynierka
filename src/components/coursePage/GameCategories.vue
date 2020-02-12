@@ -44,7 +44,6 @@ export default {
   },
   beforeCreate() {
     this.$http.get("courses/vocabulary/").then(response => {
-      console.log(response.body, "response");
       this.categories = response.body;
       this.$http
         .get("progress/", {
@@ -53,15 +52,16 @@ export default {
           }
         })
         .then(response => {
+          console.log(response.body, "response111");
           this.progress = {};
           response.body.forEach(row => {
             if (!this.progress.hasOwnProperty(row.game)) {
               this.progress[row.game] = {};
             }
             if (parseInt(row.score) === 0 || parseInt(row.max_points) === 0 || parseInt(row.score) < 0 ) {
-              this.progress[row.game][row.category] = 0;
+              this.progress[row.game][row.category_id] = 0;
             } else {
-              this.progress[row.game][row.category] = Math.round(
+              this.progress[row.game][row.category_id] = Math.round(
                 (row.score / row.max_points) * 100
               );
             }
