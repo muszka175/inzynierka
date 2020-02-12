@@ -188,7 +188,7 @@ export default {
       }
 
       if (this.somethingChanged) {
-        this.$http.post("edit-account", this.newData).then(response => {
+        this.$http.post("edit-account/", this.newData).then(response => {
           this.message = "Zmieniono poprawnie dane";
           this.originalData = Object.assign({}, this.personDetails);
           this.changedPassword = this.confirmPassword;
@@ -204,7 +204,7 @@ export default {
   },
   beforeCreate() {
     this.$http
-      .get("get-details", null, {
+      .get("get-details/", null, {
         headers: {
           Accept: "application/json"
         }

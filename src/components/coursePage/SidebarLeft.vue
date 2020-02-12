@@ -4,7 +4,7 @@
       <v-flex class="mt-5">
         <v-btn class="buttonAvatar" :to="links[2].route">
           <v-avatar size="100">
-            <img src="/assets/avatar.jpg" alt>
+            <img src="/assets/avatar.jpg" alt="avatar">
           </v-avatar>
         </v-btn>
         <p class="white--text subheading mt-1 name">{{this.personDetails.name}}</p>
@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import authService from "../../services/authService";
+
 export default {
   computed: {
     drawer: {
@@ -68,7 +70,7 @@ export default {
   },
   beforeCreate() {
     this.$http
-      .get("get-details", null, {
+      .get("get-details/", null, {
         headers: {
           Accept: "application/json"
         }

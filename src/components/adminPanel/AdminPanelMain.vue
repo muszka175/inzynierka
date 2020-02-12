@@ -27,7 +27,7 @@ export default {
   },
   beforeCreate() {
     if (!authService.isAdmin()) this.$router.push("/course");
-    this.$http.get("get-details").then(
+    this.$http.get("get-details/").then(
       response => {
         console.log(response.body.success.role);
         if (response.body.success.role !== "admin") {

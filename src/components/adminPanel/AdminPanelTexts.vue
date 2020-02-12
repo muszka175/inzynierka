@@ -120,7 +120,7 @@ export default {
         }
 
         if (this.somethingChanged) {
-          this.$http.post("edit-text", this.newData).then(response => {
+          this.$http.post("edit-text/", this.newData).then(() => {
             this.message = "Zmieniono poprawnie dane";
             this.originalData = Object.assign({}, this.texts);
           });
@@ -135,8 +135,8 @@ export default {
     }
   },
   beforeCreate() {
-    this.$http.get("texts").then(response => {
-      this.texts = response.body.success[0];
+    this.$http.get("texts/").then(response => {
+      this.texts = response.body[0];
       this.originalData = Object.assign({}, this.texts);
     });
   }

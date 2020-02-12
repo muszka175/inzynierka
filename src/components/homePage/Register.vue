@@ -11,15 +11,8 @@
             <v-form class="px3" ref="form" method="post" action="#" v-if="!submitted">
               <v-text-field
                 :rules="inputRules"
-                v-model="newUser.name"
-                label="Imię"
-                prepend-icon="person"
-                counter
-              ></v-text-field>
-              <v-text-field
-                :rules="inputRules"
-                v-model="newUser.surname"
-                label="Nazwisko"
+                v-model="newUser.username"
+                label="Nazwa użytkownika"
                 prepend-icon="person_pin"
                 counter
               ></v-text-field>
@@ -129,8 +122,7 @@ export default {
   data() {
     return {
       newUser: {
-        name: "",
-        surname: "",
+        username: "",
         email: "",
         password: "",
         sex: "",

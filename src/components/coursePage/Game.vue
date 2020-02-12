@@ -37,7 +37,6 @@ export default {
   mounted() {
     this.$http.get("vocabulary/" + this.categoryId).then(response => {
       this.words = response.body;
-      console.log("pobrano dane");
     });
   }
 };

@@ -33,7 +33,7 @@ export default {
   },
   mounted() {
     this.$http.get("texts").then(response => {
-      this.texts = response.body.success[0];
+      this.texts = response.body[0];
       console.log("pobrano dane", this.texts);
     });
   }

@@ -43,10 +43,11 @@ export default {
     };
   },
   beforeCreate() {
-    this.$http.get("courses/vocabulary").then(response => {
+    this.$http.get("courses/vocabulary/").then(response => {
+      console.log(response.body, "response");
       this.categories = response.body;
       this.$http
-        .get("progress", {
+        .get("progress/", {
           headers: {
             Authorization: `Bearer ${authService.getToken()}`
           }
