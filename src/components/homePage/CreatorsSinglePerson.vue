@@ -31,8 +31,8 @@ export default {
     return {
       creators: [
         {
-          name: "Joanna Janiszewska",
-          image: "assets/asia.jpg",
+          name: "Daria Karwat",
+          image: "assets/daria.jpg",
           description: "Android Developer"
         },
         {
